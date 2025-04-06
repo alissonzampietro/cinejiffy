@@ -82,6 +82,6 @@ onMounted(async () => {
       No movies found matching your criteria.
     </div>
 
-    <Pagination />
+    <Pagination className="mt-8 flex justify-center items-center gap-4"/>
   </main>
 </template>

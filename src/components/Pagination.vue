@@ -1,4 +1,7 @@
-<script setup>
+<script setup lang="ts">
+import type { BaseProps } from '@/interfaces/props.interface'
+
+const { className = '' } = defineProps<BaseProps>()
 
 import { useMovieStore } from '@/stores/movie'
 
@@ -8,7 +11,7 @@ const store = useMovieStore()
 
 <template>
 
-<div v-if="store.totalPages > 1" class="mt-8 flex justify-center items-center gap-4" data-cy="pagination">
+<div v-if="store.totalPages > 1" :class="className" data-cy="pagination">
     <button
         @click="store.goToPage(store.currentPage - 1)"
         :disabled="store.currentPage === 1"

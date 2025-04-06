@@ -3,6 +3,7 @@ import { setActivePinia, createPinia } from 'pinia'
 import { useMovieStore } from '../movie'
 import * as movieService from '@/services/movies.service'
 import { SortsBy } from '@/enums/movie.enum'
+import type { MovieResponse } from '@/interfaces/tmdb.interface'
 
 vi.mock('@/services/movies.service', () => ({
   fetchMovies: vi.fn(),
@@ -44,7 +45,7 @@ describe('Movie Store', () => {
         total_pages: 2,
         total_results: 20
       }
-      vi.mocked(movieService.fetchMovies).mockResolvedValue(mockMovies)
+      vi.mocked(movieService.fetchMovies).mockResolvedValue(mockMovies as MovieResponse)
 
       const store = useMovieStore()
       await store.loadMovies()
@@ -91,7 +92,7 @@ describe('Movie Store', () => {
         total_pages: 1,
         total_results: 1
       }
-      vi.mocked(movieService.fetchMovies).mockResolvedValue(mockMovies)
+      vi.mocked(movieService.fetchMovies).mockResolvedValue(mockMovies as MovieResponse)
 
       await store.updateFilters({
         query: 'test',

@@ -6,6 +6,7 @@ import { useMovieStore } from '@/stores/movie'
 import { getImageUrl } from '@/services/movies.service'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import MovieCard from '@/components/MovieCard.vue'
+import type { Movie } from '@/interfaces/tmdb.interface'
 
 vi.mock('@/services/movies.service', () => ({
   getImageUrl: vi.fn()
@@ -78,7 +79,7 @@ describe('FavoritesView', () => {
     // Get store and set up favorites
     const store = useMovieStore()
     store.isFavorite = vi.fn().mockReturnValue(true)
-    store.movies = movies
+    store.movies = movies as Movie[]
     await wrapper.vm.$nextTick()
 
     const movieCard = wrapper.findComponent(MovieCard)
@@ -130,7 +131,7 @@ describe('FavoritesView', () => {
     // Get store and set up favorites
     const store = useMovieStore()
     store.isFavorite = vi.fn().mockReturnValue(true)
-    store.movies = movies
+    store.movies = movies as Movie[]
     await wrapper.vm.$nextTick()
 
     const movieCard = wrapper.findComponent(MovieCard)

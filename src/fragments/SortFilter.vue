@@ -1,14 +1,22 @@
-<script setup>
+<script setup lang="ts">
 import { SortsBy } from '@/enums/movie.enum'
+import type { BaseProps } from '@/interfaces/props.interface';
 import { useMovieStore } from '@/stores/movie'
+
+interface SortFilterProps extends BaseProps {
+    label?: string
+}
+
+const { label = 'Sort By', className = '' } = defineProps<SortFilterProps>()
 
 const store = useMovieStore()
 </script>
 <template>
-      <label class="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
-      <div class="flex gap-4">
-        <button
-          v-for="option in [
+      <div :class="className">
+        <label class="block text-sm font-medium text-gray-700 mb-2">{{ label }}</label>
+        <div class="flex gap-4">
+          <button
+            v-for="option in [
             { value: SortsBy.Popularity, label: 'Popularity' },
             { value: SortsBy.Rating, label: 'Rating' },
             { value: SortsBy.ReleaseDate, label: 'Release Date' }
@@ -24,5 +32,6 @@ const store = useMovieStore()
           {{ option.label }}
         </button>
       </div>
+    </div>
 
 </template>
