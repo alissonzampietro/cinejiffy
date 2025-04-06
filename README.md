@@ -2,7 +2,7 @@
 
 Movie catalog web app using Vue 3, TypeScript, and Tailwind CSS.
 
-[Live Demo](https://cinejiffy.vercel.app/)
+[Live Demo](https://cinejiffy.vercel.app/){:target="_blank"}
 
 ## Setup
 
