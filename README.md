@@ -2,6 +2,8 @@
 
 Movie catalog web app using Vue 3, TypeScript, and Tailwind CSS.
 
+[Live Demo](https://cinejiffy.vercel.app/)
+
 ## Setup
 
 1. Get TMDb API key from [themoviedb.org](https://www.themoviedb.org/settings/api)
@@ -34,5 +36,6 @@ npm run test:e2e   # Run e2e tests
 ## TODO
 
 - Fix pagination items per page
-- Improve year range filter
+- Improve year range filter layout
 - Add missing unit tests
+- add cursor pointer on favorite action
