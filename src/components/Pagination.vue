@@ -11,24 +11,26 @@ const store = useMovieStore()
 
 <template>
 
-<div v-if="store.totalPages > 1" :class="className" data-cy="pagination">
-    <button
-        @click="store.goToPage(store.currentPage - 1)"
-        :disabled="store.currentPage === 1"
-        data-cy="previous-page"
-        class="px-4 py-2 rounded-lg bg-blue-500 text-white disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-    >
-    Previous
-    </button>
-    <span>Page {{ store.currentPage }} of {{ store.totalPages }}</span>
-    <button
-        @click="store.goToPage(store.currentPage + 1)"
-        :disabled="store.currentPage === store.totalPages"
-        data-cy="next-page"
-        class="px-4 py-2 rounded-lg bg-blue-500 text-white disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
-    >
-    Next
-    </button>
+<div v-if="store.totalPages > 1" :class="className + ' mb-20 flex md:flex-row flex-col items-center justify-between column'" data-cy="pagination">
+    <div class="flex items-center gap-4">
+        <button
+            @click="store.goToPage(store.currentPage - 1)"
+            :disabled="store.currentPage === 1"
+            data-cy="previous-page"
+            class="px-4 py-2 rounded-lg bg-black text-white hover:bg-white hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+        >
+        Previous
+        </button>
+        <span>Page {{ store.currentPage }} of {{ store.totalPages }}</span>
+        <button
+            @click="store.goToPage(store.currentPage + 1)"
+            :disabled="store.currentPage === store.totalPages"
+            data-cy="next-page"
+            class="px-4 py-2 rounded-lg bg-black text-white hover:bg-white hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+        >
+        Next
+        </button>
+    </div>
 
     <select
         v-model="store.itemsPerPage"

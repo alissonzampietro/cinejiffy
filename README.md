@@ -35,7 +35,8 @@ npm run test:e2e   # Run e2e tests
 
 ## TODO
 
-- Fix pagination items per page
-- Improve year range filter layout
-- Add missing unit tests
-- add cursor pointer on favorite action
+- [ ] Fix pagination items per page
+- [X] Improve year range filter layout
+- [X] Add missing unit tests
+- [X] Add cursor pointer on favorite action
+- [ ] Cypress test case on favorite's page is failing

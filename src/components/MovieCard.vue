@@ -15,7 +15,7 @@ const { movie, className = '' } = defineProps<MovieCardProps>()
 </script>
 
 <template>
-    <div :class="className" data-cy="movie-card">
+    <div :class="`${className} relative`" data-cy="movie-card">
         <router-link :to="{ name: 'movie-details', params: { id: movie.id }}" class="block">
             <img
                 :src="getImageUrl(movie.poster_path)"
@@ -24,7 +24,7 @@ const { movie, className = '' } = defineProps<MovieCardProps>()
             >
             <div class="p-4">
                 <h2 class="text-xl font-semibold mb-2 truncate">{{ movie.title }}</h2>
-                <p class="text-gray-600 text-sm mb-2">{{ new Date(movie.release_date).getFullYear() }}</p>
+                <p class="text-gray-600 text-sm mb-2">{{ movie.release_date && new Date(movie.release_date).getFullYear() }}</p>
                 <div class="flex items-center">
                     <span class="text-yellow-500 mr-1">★</span>
                     <span>{{ movie.vote_average.toFixed(1) }}</span>
@@ -34,7 +34,7 @@ const { movie, className = '' } = defineProps<MovieCardProps>()
         <button
             @click="store.toggleFavorite(movie.id)"
             data-cy="favorite-button"
-            class="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:bg-gray-100"
+            class="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 cursor-pointer w-8 h-8 flex items-center justify-center"
         >
             <span
             :class="[

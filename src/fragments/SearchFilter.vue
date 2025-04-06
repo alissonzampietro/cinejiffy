@@ -9,7 +9,7 @@ interface SearchFilterProps extends BaseProps {
 }
 
 const store = useMovieStore()
-const searchQuery = ref<string>('')
+const searchQuery = ref<string>(store.filters.query)
 
 const { label = 'Search' } = defineProps<SearchFilterProps>()
 
@@ -18,6 +18,7 @@ const debouncedSearch = debounce((query) => {
 }, 300)
 
 watch(searchQuery, (query) => {
+  debugger
   debouncedSearch(query)
 })
 
@@ -31,7 +32,7 @@ watch(searchQuery, (query) => {
           type="text"
           data-cy="search-input"
           placeholder="Search movies..."
-          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          class="w-full px-4 py-2 border border-light-gray rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
         >
     </div>
 </template>

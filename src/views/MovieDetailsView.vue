@@ -29,7 +29,6 @@ watch(
 </script>
 
 <template>
-  <main class="container mx-auto px-4 py-8">
     <LoadingSpinner v-if="store.loading" fullScreen />
 
     <!-- Error State -->
@@ -163,9 +162,8 @@ watch(
     <router-link
       to="/"
       data-cy="back-button"
-      class="fixed bottom-8 right-8 bg-blue-500 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-600 transition-colors"
+      class="fixed bottom-8 right-8 bg-black text-white cursor-pointer px-6 py-3 rounded-full shadow-lg hover:bg-white hover:text-black"
     >
       Back to List
     </router-link>
-  </main>
 </template>

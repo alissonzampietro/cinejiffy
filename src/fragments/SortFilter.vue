@@ -26,7 +26,7 @@ const store = useMovieStore()
           :class="[
             'px-4 py-2 rounded-lg transition-colors hover:cursor-pointer',
             store.filters.sortBy === option.value
-              ? 'bg-blue-500 text-white'
+              ? 'bg-black text-white'
               : 'bg-gray-100 hover:bg-gray-200'
           ]">
           {{ option.label }}

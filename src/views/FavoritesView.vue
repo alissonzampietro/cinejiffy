@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useMovieStore } from '@/stores/movie'
-import { getImageUrl } from '@/services/movies.service'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import MovieCard from '@/components/MovieCard.vue'
 
@@ -13,7 +12,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <main class="container mx-auto px-4 py-8">
     <h1 class="text-3xl font-bold mb-8">Favorite Movies</h1>
 
     <LoadingSpinner v-if="store.loading" />
@@ -31,5 +29,4 @@ onMounted(() => {
     <div data-cy="no-favorites-message" v-if="!store.loading && store.movies.filter(m => store.isFavorite(m.id)).length === 0" class="text-center text-gray-500 mt-8">
       No favorite movies yet. Browse movies and add them to your favorites!
     </div>
-  </main>
 </template>

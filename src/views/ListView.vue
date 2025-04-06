@@ -44,12 +44,11 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main class="container mx-auto px-4 py-8">
     <div class="flex justify-between items-center mb-8">
       <h1 class="text-3xl font-bold">Movie Catalog</h1>
       <router-link
         to="/favorites"
-        class="px-4 py-2 text-white rounded-lg transition-colors"
+        class="px-4 py-2 bg-black text-white hover:bg-white hover:text-black rounded-lg transition-colors shadow-sm"
       >
         My Favorites ♥
       </router-link>
@@ -83,5 +82,4 @@ onMounted(async () => {
     </div>
 
     <Pagination className="mt-8 flex justify-center items-center gap-4"/>
-  </main>
 </template>
