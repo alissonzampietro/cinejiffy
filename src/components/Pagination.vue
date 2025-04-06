@@ -31,15 +31,15 @@ const store = useMovieStore()
         Next
         </button>
     </div>
-
-    <select
+    <!-- TODO: figure out a way of showing items per page -->
+    <!-- <select
         v-model="store.itemsPerPage"
     class="ml-4 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
     >
     <option v-for="n in store.ITEMS_PER_PAGE_OPTIONS" :key="n" :value="n">
         {{ n }} per page
     </option>
-    </select>
+    </select> -->
 </div>
 
 </template>
