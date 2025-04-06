@@ -1,5 +1,4 @@
-# CineJiffy
-
+<img src="https://github.com/alissonzampietro/cinejiffy/tree/main/public/logo.png" alt="Cinejiffy Logo" width="200">
 Movie catalog web app using Vue 3, TypeScript, and Tailwind CSS.
 
 [Live Demo](https://cinejiffy.vercel.app/)
