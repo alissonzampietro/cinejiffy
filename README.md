@@ -1,55 +1,38 @@
-# cinejiffy
+# CineJiffy
 
-This template should help get you started developing with Vue 3 in Vite.
+Movie catalog web app using Vue 3, TypeScript, and Tailwind CSS.
 
-## Recommended IDE Setup
+## Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+1. Get TMDb API key from [themoviedb.org](https://www.themoviedb.org/settings/api)
+2. Copy `.env.example` to `.env.local` and add your API key
+3. Install dependencies: `npm install`
 
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## Development
 
 ```sh
-npm install
+npm run dev        # Start dev server
+npm run build      # Build for production
+npm run test:unit  # Run unit tests
+npm run test:e2e   # Run e2e tests
 ```
 
-### Compile and Hot-Reload for Development
+## Features
 
-```sh
-npm run dev
-```
+- Movie search and filters (genre, year, rating)
+- Favorites list with local storage
+- Movie details with related films
+- Mobile-responsive design
 
-### Type-Check, Compile and Minify for Production
+## Tech Stack
 
-```sh
-npm run build
-```
+- Vue 3 + TypeScript
+- Tailwind CSS
+- Vitest + Cypress
+- TMDb API
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## TODO
 
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
+- Fix pagination items per page
+- Improve year range filter
+- Add missing unit tests

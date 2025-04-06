@@ -10,11 +10,24 @@ const router = createRouter({
       component: ListView,
     },
     {
-      path: '/details',
-      name: 'details',
+      path: '/movie/:id',
+      name: 'movie-details',
       component: () => import('../views/MovieDetailsView.vue'),
+      props: true
     },
+    {
+      path: '/favorites',
+      name: 'favorites',
+      component: () => import('../views/FavoritesView.vue')
+    }
   ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
+  }
 })
 
 export default router
