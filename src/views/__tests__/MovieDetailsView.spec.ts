@@ -125,6 +125,6 @@ describe('MovieDetailsView', () => {
     await favoriteButton.trigger('click')
 
     const store = useMovieStore()
-    expect(store.toggleFavorite).toHaveBeenCalledWith(1)
+    expect(store.toggleFavorite).toHaveBeenCalledWith(movie)
   })
 })

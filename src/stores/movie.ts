@@ -3,9 +3,7 @@ import { defineStore } from 'pinia'
 import { fetchGenres, fetchMovieDetails, fetchMovies, fetchSimilarMovies } from '@/services/movies.service'
 import type { Genre, Movie, MovieDetails, MovieFilters } from '@/interfaces/tmdb.interface'
 import { SortsBy } from '@/enums/movie.enum'
-
-const ITEMS_PER_PAGE_OPTIONS = [10, 20, 30, 50]
-const FAVORITE_MOVIES_KEY = 'favorite_movies'
+import { ITEMS_PER_PAGE_OPTIONS, FAVORITE_MOVIES_ID_KEY, FAVORITE_MOVIES_KEY } from '@/constants/favorite.constants'
 
 export const useMovieStore = defineStore('movies', () => {
   const movies = ref<Movie[]>([])
@@ -18,7 +16,15 @@ export const useMovieStore = defineStore('movies', () => {
   const genres = ref<Genre[]>([])
   const selectedMovie = ref<MovieDetails | null>(null)
   const similarMovies = ref<Movie[]>([])
-  const favoriteMovies = ref<Set<number>>(new Set(JSON.parse(localStorage.getItem(FAVORITE_MOVIES_KEY) || '[]')))
+  const favoriteMovies = ref<Movie[]|MovieDetails[]>(
+    (JSON.parse(localStorage.getItem(FAVORITE_MOVIES_KEY) || '[]') as Movie[]).map(movie => ({
+      ...movie,
+      id: Number(movie.id)
+    }))
+  )
+  const favoriteMoviesIds = ref<Set<number>>(new Set(
+    JSON.parse(localStorage.getItem(FAVORITE_MOVIES_ID_KEY) || '[]').map(Number)
+  ))
 
   const filters = ref<MovieFilters>({
     query: '',
@@ -100,20 +106,25 @@ export const useMovieStore = defineStore('movies', () => {
     }
   }
 
-  function toggleFavorite(movieId: number) {
-    const favorites = new Set(favoriteMovies.value)
-    if (favorites.has(movieId)) {
-      favorites.delete(movieId)
+  function toggleFavorite(movie: Movie|MovieDetails) {
+    const favoritesIds = new Set(favoriteMoviesIds.value)
+    let favMovies = [...favoriteMovies.value]
+    if (favoritesIds.has(movie.id)) {
+      favoritesIds.delete(movie.id)
+      favMovies = favMovies.filter(m => m.id !== movie.id)
     } else {
-      favorites.add(movieId)
+      favoritesIds.add(movie.id)
+      favMovies.push(movie as Movie)
     }
     // Create a new Set to trigger reactivity
-    favoriteMovies.value = favorites
-    localStorage.setItem(FAVORITE_MOVIES_KEY, JSON.stringify(Array.from(favorites)))
+    favoriteMoviesIds.value = favoritesIds
+    favoriteMovies.value = favMovies as Movie[]
+    localStorage.setItem(FAVORITE_MOVIES_ID_KEY, JSON.stringify(Array.from(favoritesIds)))
+    localStorage.setItem(FAVORITE_MOVIES_KEY, JSON.stringify(favMovies))
   }
 
   function isFavorite(movieId: number): boolean {
-    return favoriteMovies.value.has(movieId)
+    return favoriteMoviesIds.value.has(movieId)
   }
 
   return {
@@ -128,6 +139,8 @@ export const useMovieStore = defineStore('movies', () => {
     selectedMovie,
     similarMovies,
     filters,
+    favoriteMovies,
+    favoriteMoviesIds,
     hasMovies,
     hasFilters,
     loadGenres,

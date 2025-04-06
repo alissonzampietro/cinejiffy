@@ -18,7 +18,6 @@ const debouncedSearch = debounce((query) => {
 }, 300)
 
 watch(searchQuery, (query) => {
-  debugger
   debouncedSearch(query)
 })
 

@@ -79,7 +79,7 @@ describe('FavoritesView', () => {
     // Get store and set up favorites
     const store = useMovieStore()
     store.isFavorite = vi.fn().mockReturnValue(true)
-    store.movies = movies as Movie[]
+    store.favoriteMovies = movies as Movie[]
     await wrapper.vm.$nextTick()
 
     const movieCard = wrapper.findComponent(MovieCard)
@@ -131,7 +131,7 @@ describe('FavoritesView', () => {
     // Get store and set up favorites
     const store = useMovieStore()
     store.isFavorite = vi.fn().mockReturnValue(true)
-    store.movies = movies as Movie[]
+    store.favoriteMovies = movies as Movie[]
     await wrapper.vm.$nextTick()
 
     const movieCard = wrapper.findComponent(MovieCard)
@@ -140,6 +140,6 @@ describe('FavoritesView', () => {
     const favoriteButton = movieCard.find('[data-cy="favorite-button"]')
     await favoriteButton.trigger('click')
 
-    expect(store.toggleFavorite).toHaveBeenCalledWith(1)
+    expect(store.toggleFavorite).toHaveBeenCalledWith(movies[0])
   })
 })

@@ -3,7 +3,8 @@ import { setActivePinia, createPinia } from 'pinia'
 import { useMovieStore } from '../movie'
 import * as movieService from '@/services/movies.service'
 import { SortsBy } from '@/enums/movie.enum'
-import type { MovieResponse } from '@/interfaces/tmdb.interface'
+import type { Movie, MovieResponse } from '@/interfaces/tmdb.interface'
+import { FAVORITE_MOVIES_ID_KEY } from '@/constants/favorite.constants'
 
 vi.mock('@/services/movies.service', () => ({
   fetchMovies: vi.fn(),
@@ -112,17 +113,17 @@ describe('Movie Store', () => {
 
     it('manages favorites in localStorage', () => {
       const store = useMovieStore()
-      const movieId = 1
+      const movie = {id: 1} as Movie
 
       // Add to favorites
-      store.toggleFavorite(movieId)
-      expect(store.isFavorite(movieId)).toBe(true)
-      expect(localStorage.getItem('favorite_movies')).toBe('[1]')
+      store.toggleFavorite(movie)
+      expect(store.isFavorite(movie.id)).toBe(true)
+      expect(localStorage.getItem(FAVORITE_MOVIES_ID_KEY)).toBe('[1]')
 
       // Remove from favorites
-      store.toggleFavorite(movieId)
-      expect(store.isFavorite(movieId)).toBe(false)
-      expect(localStorage.getItem('favorite_movies')).toBe('[]')
+      store.toggleFavorite(movie)
+      expect(store.isFavorite(movie.id)).toBe(false)
+      expect(localStorage.getItem(FAVORITE_MOVIES_ID_KEY)).toBe('[]')
     })
   })
 })

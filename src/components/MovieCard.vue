@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { useMovieStore } from '@/stores/movie'
 import { getImageUrl } from '@/services/movies.service'
-import type { Movie } from '@/interfaces/tmdb.interface';
+import type { Movie, MovieDetails } from '@/interfaces/tmdb.interface';
 import type { BaseProps } from '@/interfaces/props.interface';
 
 const store = useMovieStore()
 
 interface MovieCardProps extends BaseProps {
-    movie: Movie,
+    movie: Movie|MovieDetails,
 }
 
 const { movie, className = '' } = defineProps<MovieCardProps>()
@@ -32,7 +32,7 @@ const { movie, className = '' } = defineProps<MovieCardProps>()
             </div>
         </router-link>
         <button
-            @click="store.toggleFavorite(movie.id)"
+            @click="store.toggleFavorite(movie)"
             data-cy="favorite-button"
             class="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:bg-gray-100 cursor-pointer w-8 h-8 flex items-center justify-center"
         >

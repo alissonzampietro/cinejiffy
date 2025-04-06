@@ -12,7 +12,7 @@ interface GenreFilterProps extends BaseProps {
 const { label = 'Genres', className = '' } = defineProps<GenreFilterProps>()
 
 const store = useMovieStore()
-const selectedGenres = ref<Genre[]>([])
+const selectedGenres = ref<Genre[]>(store.filters.genres.map(id => store.genres.find(g => g.id === id) as Genre))
 
 function updateSelectedGenres(genres: Genre[]) {
     store.updateFilters({ genres: genres.map(g => g.id) })

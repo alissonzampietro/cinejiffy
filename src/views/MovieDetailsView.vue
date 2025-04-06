@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router'
 import { getImageUrl } from '@/services/movies.service'
 import LoadingSpinner from '@/components/LoadingSpinner.vue'
 import MovieCard from '@/components/MovieCard.vue'
+import BackListButton from '@/fragments/BackListButton.vue'
 
 const route = useRoute()
 const store = useMovieStore()
@@ -84,7 +85,7 @@ watch(
               <p>{{ store.selectedMovie.status }}</p>
             </div>
             <button
-              @click="store.toggleFavorite(store.selectedMovie.id)"
+              @click="store.toggleFavorite(store.selectedMovie)"
               class="w-full px-4 py-2 mt-4 rounded-lg transition-colors flex items-center justify-center gap-2 cursor-pointer"
               :class="store.isFavorite(store.selectedMovie.id) ? 'bg-red-500 text-white' : 'bg-gray-100 hover:bg-gray-200'"
             >
@@ -158,12 +159,5 @@ watch(
       </div>
     </div>
 
-    <!-- Back Button -->
-    <router-link
-      to="/"
-      data-cy="back-button"
-      class="fixed bottom-8 right-8 bg-black text-white cursor-pointer px-6 py-3 rounded-full shadow-lg hover:bg-white hover:text-black"
-    >
-      Back to List
-    </router-link>
+    <BackListButton />
 </template>
